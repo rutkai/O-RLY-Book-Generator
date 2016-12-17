@@ -1,8 +1,6 @@
 before_script:
   - whoami
   - hostname
-  - apt-get update
-  - apt-get install docker.io -y
   - docker info
 build_image:
   script:
