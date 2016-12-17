@@ -5,7 +5,7 @@ RUN set -x \
 
 RUN easy_install pip
 
-RUN git clone $CI_BUILD_REPO
+RUN git clone __CI_BUILD_REPO__
 
 WORKDIR O-RLY-Book-Generator
 
