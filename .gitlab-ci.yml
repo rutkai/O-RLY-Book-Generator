@@ -2,6 +2,7 @@ before_script:
   - whoami
   - hostname
   - docker info
+  - env
 build_image:
   script:
     - docker build -t orly-generator:0.1 -t orly-generator:latest .
