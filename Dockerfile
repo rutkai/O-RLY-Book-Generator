@@ -5,7 +5,7 @@ RUN set -x \
 
 RUN easy_install pip
 
-RUN git clone https://gitlab.apps.slyweb.org/shoudusse/O-RLY-Book-Generator.git
+RUN git clone https://gitlab-ci-token:ySi-ZCy4kETtHwgNHLix@gitlab.apps.slyweb.org/shoudusse/O-RLY-Book-Generator.git
 
 WORKDIR O-RLY-Book-Generator
 
