@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-          <form action="/generate">
+          <form>
             <div class="form-group">
             <label>Title</label>
             <input class="form-control" id="title" name="title" placeholder="required"/>
@@ -47,12 +47,13 @@
             </select>
             </div>
             <div class="form-group">
-            <button type="submit" class="btn btn-primary">Generate O RLY</button>
+            <button id="generate-btn" class="btn btn-primary">Generate O RLY</button>
             </div>
           </form>
         </div>
         <div class="col-sm-4">
-          Aperçu
+          <h2>Aperçu</h2>
+          <div class="result"></div>
         </div>
       </div>
     </div>
@@ -62,5 +63,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    <script>
+      $("form").submit(function(e){
+        e.preventDefault();
+        var title = encodeURIComponent($("#title").val());
+        var topText = encodeURIComponent($("#top_text").val());
+        var author = encodeURIComponent($("#author").val());
+        var imageCode = encodeURIComponent($("#image_code").val());
+        var theme = encodeURIComponent($("#theme").val());
+        var guide_text = encodeURIComponent($("#guide_text").val());
+        var guide_text_placement = encodeURIComponent($("#guide_text_placement").val());
+
+        if(isNaN(imageCode) || imageCode.length == 0){
+          imageCode = Math.floor(Math.random() * 38) + 1;
+        }
+        if(isNaN(theme) || theme.length == 0){
+          theme = Math.floor(Math.random() * 16);
+        }
+        if(title.length > 0 && topText.length > 0 && author.length > 0){
+          var imagePath = '/generate?title='+title+'&top_text='+topText+'&author='+author+'&image_code='+imageCode+'&theme='+theme+'&guide_text='+guide_text+'&guide_text_placement='+guide_text_placement;
+          $(".result").html('<img src="'+imagePath+'" />')
+          $(".result").append('<a href="'+imagePath+'" download="'+imagePath+'">Download</a>');
+          if($(window).width()< 820){
+            $("html,body").animate({scrollTop:$('.result').offset().top - 60}, '500');
+          }
+        }
+        else{
+          if(title.length == 0){
+            $("#title").addClass("error");
+          }
+          if(topText.length == 0){
+            $("#top_text").addClass("error");
+          }
+          if(author.length == 0){
+            $("#author").addClass("error");
+          }
+        }
+      });
+    </script>
   </body>
 </div>
