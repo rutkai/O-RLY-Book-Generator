@@ -1,12 +1,11 @@
 before_script:
   - whoami
   - hostname
-  - ip a
   - docker info
 build_image:
   script:
     - docker build -t orly-generator:0.1 -t orly-generator:latest .
     - docker rm -f orly-generator
-    - docker run -d --name orly-generator orly-generator
+    - docker run -d --name orly-generator -e "SERVICE_TAGS=traefik.enable=false" orly-generator
   tags:
     - docker
