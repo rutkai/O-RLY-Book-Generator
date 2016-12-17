@@ -166,3 +166,8 @@ def generate():
         if os.path.isfile(final_path):
             print 'removing file'
             os.remove(final_path)
+
+@app.route('/images/<image_code>', methods=['GET'])
+def get_image(image_code):
+    cover_image_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'images', ('%s.png'%image_code)))
+    return send_file(cover_image_path, mimetype='image/png')
