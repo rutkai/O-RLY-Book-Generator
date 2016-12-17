@@ -4,6 +4,10 @@ from slacker import *
 import shutil, urllib, os, sys, datetime, requests, json, random, datetime
 from slack import app
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/authorize')
 def authorize():
     try:
