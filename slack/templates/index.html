@@ -11,7 +11,7 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <form>
             <div class="form-group">
             <label>Title</label>
@@ -51,9 +51,11 @@
             </div>
           </form>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <h2>Aperçu</h2>
-          <div class="result"></div>
+          <div class="result">
+            <img style="box-shadow: 7px 7px 30px rgba(64,64,64,0.81);" src="https://res.cloudinary.com/practicaldev/image/fetch/c_scale,fl_progressive,q_auto,w_300/f_auto/http://i.imgur.com/wsGjkE9.png" />
+          </div>
         </div>
       </div>
     </div>
@@ -111,7 +113,7 @@
         }
         if(title.length > 0 && topText.length > 0 && author.length > 0){
           var imagePath = '/generate?title='+title+'&top_text='+topText+'&author='+author+'&image_code='+imageCode+'&theme='+theme+'&guide_text='+guide_text+'&guide_text_placement='+guide_text_placement;
-          $(".result").html('<img src="'+imagePath+'" />')
+          $(".result").html('<img style="box-shadow: 7px 7px 30px rgba(64,64,64,0.81);" src="'+imagePath+'" />')
           $(".result").append('<a href="'+imagePath+'" download="'+imagePath+'">Download</a>');
           if($(window).width()< 820){
             $("html,body").animate({scrollTop:$('.result').offset().top - 60}, '500');
