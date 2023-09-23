@@ -1,16 +1,14 @@
-FROM ubuntu
+FROM python:3.10
 
-RUN set -x \
-    && DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y git python-setuptools libmemcached-dev libjpeg-dev libfreetype6-dev libpq-dev build-essential libpython-dev
+WORKDIR /app
 
-RUN easy_install pip
-
-RUN git clone __CI_BUILD_REPO__
-
-WORKDIR O-RLY-Book-Generator
-
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+
+COPY . .
 
 EXPOSE 5000
 
-CMD python run.py
+ENV IS_PRODUCTION=1
+
+CMD ["python", "run.py"]
